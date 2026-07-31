@@ -1,0 +1,9 @@
+.env
+meltano_project/.meltano/
+meltano_project/transform/target/
+meltano_project/transform/dbt_packages/
+meltano_project/transform/logs/
+logs/
+__pycache__/
+*.pyc
+.DS_Store

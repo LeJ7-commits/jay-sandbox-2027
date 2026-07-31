@@ -1,0 +1,11 @@
+version: 2
+sources:
+  - name: tap_csv
+    schema: raw
+    tables:
+      - name: ad_impressions
+models:
+  - name: stg_ad_impressions
+    columns:
+      - name: impression_id
+        tests: [unique, not_null]

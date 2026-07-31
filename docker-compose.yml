@@ -1,0 +1,30 @@
+services:
+  warehouse-db:
+    image: postgres:16
+    environment:
+      POSTGRES_USER: meltano
+      POSTGRES_PASSWORD: meltano
+      POSTGRES_DB: warehouse
+    ports:
+      - "5433:5432"
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U meltano"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  airflow:
+    build: .
+    depends_on:
+      warehouse-db:
+        condition: service_healthy
+    environment:
+      TARGET_POSTGRES_HOST: warehouse-db
+      TARGET_POSTGRES_PORT: 5432
+      TARGET_POSTGRES_PASSWORD: meltano
+      DBT_POSTGRES_HOST: warehouse-db
+      DBT_POSTGRES_PORT: 5432
+      DBT_POSTGRES_PASSWORD: meltano
+    ports:
+      - "8080:8080"
+    command: standalone
