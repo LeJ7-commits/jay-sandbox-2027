@@ -1,0 +1,24 @@
+version: 2
+
+sources:
+  - name: raw_warmup
+    schema: raw
+    tables:
+      - name: ad_impressions_bulk
+      - name: ad_avails_bulk
+
+models:
+  - name: stg_ad_impressions_bulk
+    columns:
+      - name: impression_id
+        tests: [unique, not_null]
+      - name: placement
+        tests:
+          - accepted_values:
+              values: ['pre-roll', 'mid-roll', 'post-roll']
+      - name: market
+        tests:
+          - accepted_values:
+              values: ['SE', 'NO', 'DK', 'FI']
+
+  - name: stg_ad_avails_bulk

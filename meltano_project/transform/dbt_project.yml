@@ -10,3 +10,9 @@ models:
   warmup_dbt:
     tap_csv:
       +materialized: view
+    staging:
+      +materialized: view
+    intermediate:
+      +materialized: table
+    marts:
+      +materialized: table

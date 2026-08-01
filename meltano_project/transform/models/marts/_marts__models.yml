@@ -1,0 +1,7 @@
+version: 2
+
+models:
+  - name: fct_fill_rate_by_placement
+    columns:
+      - name: fill_rate
+        tests: [not_null]

@@ -6,7 +6,7 @@ default:
       host: "{{ env_var('DBT_POSTGRES_HOST', 'localhost') }}"
       port: "{{ env_var('DBT_POSTGRES_PORT', '5433') | as_number }}"
       user: meltano
-      password: "{{ env_var('DBT_POSTGRES_PASSWORD') }}"
+      password: "{{ env_var('DBT_POSTGRES_PASSWORD', 'meltano') }}"
       dbname: warehouse
       schema: analytics
       threads: 4
