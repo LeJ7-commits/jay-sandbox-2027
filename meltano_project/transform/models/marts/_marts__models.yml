@@ -5,3 +5,8 @@ models:
     columns:
       - name: fill_rate
         tests: [not_null]
+
+  - name: fct_weekly_fill_rate_by_market
+    columns:
+      - name: fill_rate
+        tests: [not_null]
